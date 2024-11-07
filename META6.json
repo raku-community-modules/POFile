@@ -1,20 +1,31 @@
 {
-    "name" : "POFile",
-    "description" : "Module for interacting with gettext PO files",
-    "perl" : "6.c",
-    "version" : "0.7.2",
-    "meta-version" : "0",
-    "license" : "Artistic-2.0",
-    "authors" : [
-        "Alexander Kiryuhin <alexander.kiryuhin@gmail.com>",
-        "Jonathan Worthington <jonathan@edument.se>"
-    ],
-    "provides" : {
-        "POFile" : "lib/POFile.pm6"
-    },
-    "source-url" : "https://github.com/edumentab/p6-pofile.git",
-    "support" : {
-        "source" : "https://github.com/edumentab/p6-pofile.git"
-    },
-    "tags": ["gettext", "i18n"]
+  "auth": "zef:raku-community-modules",
+  "authors": [
+    "Alexander Kiryuhin",
+    "Jonathan Worthington>"
+  ],
+  "build-depends": [
+  ],
+  "depends": [
+  ],
+  "description": "manipulating data in gettext PO files",
+  "license": "Artistic-2.0",
+  "meta-version": "0",
+  "name": "POFile",
+  "perl": "6.c",
+  "provides": {
+    "POFile": "lib/POFile.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "https://github.com/raku-community-modules/POFile.git",
+  "support": {
+  },
+  "tags": [
+    "GETTEXT",
+    "I18N"
+  ],
+  "test-depends": [
+  ],
+  "version": "0.7.2"
 }
