@@ -1,8 +1,7 @@
-use v6;
 use Test;
 use POFile;
 
-plan *;
+plan 2;
 
 my $PO = qq!msgid "One"\nmsgstr ""!;
 ok POFile.parse($PO);
@@ -10,4 +9,4 @@ ok POFile.parse($PO);
 $PO = qq!#~ obsolete message!;
 ok POFile.parse($PO);
 
-done-testing;
+# vim: expandtab shiftwidth=4

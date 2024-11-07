@@ -1,6 +1,7 @@
-use v6;
 use Test;
 use POFile;
+
+plan 51;
 
 my ($PO, $result);
 
@@ -321,4 +322,4 @@ $PO = "I will not be parsed!";
 throws-like { POFile.parse($PO) },
     POFile::CannotParse, 'Has typed exception on parsing failure';
 
-done-testing;
+# vim: expandtab shiftwidth=4
