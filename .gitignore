@@ -16,3 +16,4 @@ Session.vim
 *~
 # Vim auto-generated tag files
 tags
+*.rakucov

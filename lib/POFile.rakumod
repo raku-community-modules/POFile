@@ -1,5 +1,5 @@
 class POFile::Entry {...}
-class POFile {...}
+class POFile {...}  # UNCOVERABLE
 
 class POFile::IncorrectIndex is Exception {
     has $.index;
@@ -88,7 +88,7 @@ class PO::Actions {
 
     method PO-rule($/) {
         my @args;
-        my ($reference = '', $extracted   = '', $comment = '',
+        my ($reference = '', $extracted   = '', $comment = '',  # UNCOVERABLE
             $format    = '', $fuzzy-msgid = '', $fuzzy-msgctxt = '');
 
         # We detect comments line by line, so to gather every e.g.
@@ -194,7 +194,7 @@ class POFile::Entry {
     method msgstr-quoted {
         $!msgstr ~~ Str ??
         po-quote($!msgstr) !!
-        $!msgstr.map({ po-quote($_) })
+        $!msgstr.map({ po-quote($_) })  # UNCOVERABLE
     }
 
     method Str() {
@@ -290,7 +290,7 @@ class POFile does Associative does Positional {
     method !create($text) {
         my $result = $text.made;
         my @obsolete-messages = $result[1];
-        my (@items, %entries);
+        my (@items, %entries);  # UNCOVERABLE
         for $result[0] -> $rule {
             @items.push: $rule;
             %entries{$rule.msgid} = $rule;
@@ -342,139 +342,5 @@ sub po-quote(Str $input) is export(:quoting) {
 sub po-unquote(Str $input) is export(:quoting) {
     $input.trans(['\\\\', '\\"'] => ['\\', '"']);
 }
-
-=begin pod
-
-=head1 NAME
-
-POFile - manipulating data in gettext PO files
-
-=head1 SYNOPSIS
-
-=begin code :lang<raku>
-
-use POFile;
-my $po = POFile.load('foo.po');
-
-say $po.obsolete-messages; # list of obsolete messages
-say $po[0]; # POFile::Entry object at 0 index
-say $po{'Splash text'}; # POFile::Entry object with msgid C<Splash textC<
-for @$po -> $item {
-    say $item.reference; # 'finddialog.cpp:38'
-    say $item.msgstr; # msgstr value
-    $item.msgstr = update($item.msgstr); # Do some update
-}
-$po.save('foo-updated.po');
-
-=end code
-
-=head1 DESCRIPTION
-
-The C<.po> file as a whole is represented by the C<POFile> class,
-which holds a C<POFile::Entry> object per entry in the PO file.
-
-=head2 POFile::Entry
-
-The C<POFile::Entry> class represents a single record in PO file,
-and has its fields as attributes: C<msgid>, C<msgid-plural>,
-C<msgstr>, C<msgctxt>, C<reference> (reference comment),
-C<extracted> (extracted comment), C<comment> (translator comment),
-C<format-style>, C<fuzzy-msgid>, C<fuzzy-msgctxt>. All these
-attributes are set read/write.
-
-You can create a single C<POFile::Entry> object from a C<Str>
-using the C<POFile::Entry.parse($str)> method.
-
-The C<msgid> and C<msgstr> accessors always provided unquoted
-values; the methods C<msgid-quoted> and C<msgstr-quoted> are present
-to provide access to the quoted messages.
-
-The value of C<msgstr> attribute might be either C<Str> or C<Array>,
-and is based on value of C<msgid-plural> attribute:
-
-=begin code :lang<raku>
-
-with $po.msgid-plural {
-    say $po.msgid; # Singular form
-    say $_; # Plural form
-    for $po.msgstr -> $form {
-        say $form; # Every plural form of end language
-    }
-}
-
-=end code
-
-You can serialize an entry with C<Str> method or its C<~> shortcut:
-
-=begin code :lang<raku>
-
-my $po-entry = $po[1]; # Get second entry
-say ~$po-entry;    # Serialized 1
-say $po-entry.Str; # Serialized 2
-
-=end code
-
-Note that B<no line wrapping> is done by the module.
-
-=head2 POFile
-
-C<POFile> provides access to C<POFile::Entry> objects using either
-index (position in original file) or key (msgid value).
-
-It must be noted that this module provides hash-like access by msgid,
-which might B<not> be unique. Please consider that I<only array access>
-is stable in this case. Use hash access you know I<for sure> there
-are no items with the same C<msgid>, yet different C<msgctxt>.
-
-The C<POFile> object also contains all obsolete messages, which cani
-be accessed using C<obsolete-messages> attribute.
-
-You can create from scratch a new C<POFile> object and populate it with
-entries, as well as delete entries by id or by key:
-
-=begin code :lang<raku>
-
-my $po = POFile.new;
-@$po.push(POFile::Entry.parse(...));
-@$po.push(POFile::Entry.parse(...));
-$po[0]:delete;
-$po{'my msgid'}:delete;
-
-=end code
-
-As well as C<POFile::Entry>, you can serialize a C<POFile> object
-calling C<Str> method on it.
-
-=head2 Escaping
-
-Additionally, two routines are available to escape and unescape
-strings accordingly to rules described for PO format.
-
-=begin code :lang<raku>
-
-use POFile :quoting;
-
-say po-unquote(｢\t\"\\\n｣); # ｢\t"\\n｣      <- unquoting
-say po-quote(｢\t"\\n\｣);    # ｢\t\"\\\n\\｣  <- quoting
-
-=end code
-
-=head1 AUTHORS
-
-=item Alexander Kiryuhin
-=item Jonathan Worthington
-
-Source can be located at: https://github.com/raku-community-modules/POFile .
-Comments and Pull Requests are welcome.
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright 2018 - 2020 Edument AB
-
-Copyright 2024 The Raku Community
-
-This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
-
-=end pod
 
 # vim: expandtab shiftwidth=4

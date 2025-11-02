@@ -106,7 +106,7 @@ COPYRIGHT AND LICENSE
 
 Copyright 2018 - 2020 Edument AB
 
-Copyright 2024 The Raku Community
+Copyright 2024, 2025 The Raku Community
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

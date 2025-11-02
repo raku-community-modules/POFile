@@ -12,14 +12,18 @@
   "license": "Artistic-2.0",
   "meta-version": "0",
   "name": "POFile",
-  "perl": "6.c",
+  "production": true,
   "provides": {
     "POFile": "lib/POFile.rakumod"
   },
+  "raku": "6.c",
   "resources": [
   ],
   "source-url": "https://github.com/raku-community-modules/POFile.git",
   "support": {
+    "bugtracker": "https://github.com/raku-community-modules/POFile/issues",
+    "email": "community@raku.org",
+    "source": "https://github.com/raku-community-modules/POFile.git"
   },
   "tags": [
     "GETTEXT",
@@ -27,5 +31,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.8"
+  "version": "0.9"
 }

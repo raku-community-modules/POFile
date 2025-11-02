@@ -1,6 +1,8 @@
-Revision history for actions
+Revision history for POFile
 
 {{$NEXT}}
+    - Add coverage tests (still incomplete)
+    - Update copyright year
 
 0.8  2024-11-07T13:04:51+01:00
     - Initial version as a Raku Community Module
