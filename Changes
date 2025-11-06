@@ -1,6 +1,8 @@
 Revision history for POFile
 
 {{$NEXT}}
+
+0.9  2025-11-06T19:17:22+01:00
     - Add coverage tests (still incomplete)
     - Update copyright year
 
