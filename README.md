@@ -14,7 +14,7 @@ my $po = POFile.load('foo.po');
 
 say $po.obsolete-messages; # list of obsolete messages
 say $po[0]; # POFile::Entry object at 0 index
-say $po{'Splash text'}; # POFile::Entry object with msgid C<Splash textC<
+say $po{'Splash text'}; # POFile::Entry object with msgid "Splash text"
 for @$po -> $item {
     say $item.reference; # 'finddialog.cpp:38'
     say $item.msgstr; # msgstr value
